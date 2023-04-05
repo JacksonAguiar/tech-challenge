@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import API_ITEMS from "../API";
-import { parseStringFileToData } from "../utils/file_parsing";
+import { parseStringFileToData } from "../utils/file-parsing";
 
 interface Props {
-  onUploadSuccess: VoidFunction;
+  onSubmit: Function;
 }
 
-const UploadButton: React.FC<Props> = ({ onUploadSuccess, ...props }: Props) => {
+const UploadButton: React.FC<Props> = ({ onSubmit, ...props }: Props) => {
   const [fileData, setFileData] = useState<String | ArrayBuffer | null>(null);
 
   const handleFileInputChange = (
@@ -27,18 +27,16 @@ const UploadButton: React.FC<Props> = ({ onUploadSuccess, ...props }: Props) => 
 
   const handleUploadButtonClick = () => {
     if (fileData) {
-
-      const items = parseStringFileToData(fileData.toString());
-
-     API_ITEMS.create(items).then((res)=>{
-        if(res.status === 200) onUploadSuccess()
-      })
+      onSubmit(fileData.toString());
     }
   };
 
   return (
     <div>
-      <input type="file" onChange={handleFileInputChange} />
+      <label htmlFor="input">
+        <input type="file" id="input" onChange={handleFileInputChange} />
+        <span>selecionar</span>
+      </label>
       <button onClick={handleUploadButtonClick}>Upload</button>
     </div>
   );
