@@ -1,11 +1,11 @@
-import prisma from "../PrismaClient/";
+import prisma from "../prisma";
 
 export default class Controller {
   async create(req, res) {
     try {
-      const salls: any[] = req.body;
+      const sales: any[] = req.body;
 
-      const data = await prisma.sale.createMany({ data: salls });
+      const data = await prisma.sale.createMany({ data: sales });
 
       res.json(data);
     } catch (error) {
