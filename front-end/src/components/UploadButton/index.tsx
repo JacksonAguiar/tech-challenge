@@ -1,13 +1,17 @@
 import React, { useState } from "react";
-import API_ITEMS from "../API";
-import { parseStringFileToData } from "../utils/file-parsing";
+import "./styles.css";
+import { FiUpload } from "react-icons/fi";
 
 interface Props {
   onSubmit: Function;
 }
 
-const UploadButton: React.FC<Props> = ({ onSubmit, ...props }: Props) => {
+const UploadButtonComponent: React.FC<Props> = ({
+  onSubmit,
+  ...props
+}: Props) => {
   const [fileData, setFileData] = useState<String | ArrayBuffer | null>(null);
+  const [fileName, setfileName] = useState<String>("");
 
   const handleFileInputChange = (
     event: React.ChangeEvent<HTMLInputElement>
@@ -15,7 +19,7 @@ const UploadButton: React.FC<Props> = ({ onSubmit, ...props }: Props) => {
     if (event.target.files && event.target.files.length > 0) {
       const file = event.target.files[0];
       const reader = new FileReader();
-
+      setfileName(file.name);
       reader.onload = (e) => {
         if (e.target) setFileData(e.target.result);
       };
@@ -32,14 +36,16 @@ const UploadButton: React.FC<Props> = ({ onSubmit, ...props }: Props) => {
   };
 
   return (
-    <div>
-      <label htmlFor="input">
+    <div className="upload-content">
+      <label htmlFor="input" className={fileData ? "has-file" : ""}>
+        <FiUpload />
         <input type="file" id="input" onChange={handleFileInputChange} />
-        <span>selecionar</span>
+        <span>{fileData ? fileName : "Selecionar"}</span>
       </label>
-      <button onClick={handleUploadButtonClick}>Upload</button>
+
+      <button onClick={handleUploadButtonClick}>Enviar</button>
     </div>
   );
 };
 
-export default UploadButton;
+export default UploadButtonComponent;

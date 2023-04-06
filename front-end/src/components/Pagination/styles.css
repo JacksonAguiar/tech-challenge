@@ -1,0 +1,28 @@
+.content-pagination {
+  display: flex;
+  height: 100px;
+  justify-content: flex-end;
+  
+}
+.content-pagination .item-pagination +  .item-pagination{
+    margin-left: 5px;
+}
+.content-pagination .item-pagination{
+    cursor: pointer;
+  
+    height: 30px;
+    width: 30px;
+    display: flex;
+    justify-content: center;
+
+    align-items: center;
+    border-radius: 50%;
+}
+.active{
+    background: #ba68c8;
+    color: #fff;
+}
+.inactive{
+    color: #000;
+    border: 1px solid #000; 
+}
