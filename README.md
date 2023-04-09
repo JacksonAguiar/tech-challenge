@@ -1,5 +1,12 @@
 # tech-challenge
 
+## Tecnologias
+-NODE JS/TYPESCRIPT
+-REACT JS/TYPESCRIPT
+-POSTGRESQL
+-PRISMA
+-JEST
+-DOCKER E DOCKER-COMPOSE
 ### Pré-requisitos
 
 Para executar a aplicação, você precisa ter instalado em sua máquina os seguintes programas:
