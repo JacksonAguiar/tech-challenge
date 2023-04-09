@@ -54,4 +54,8 @@ Para o frontend, foi utilizado o framework ReactJS com typescript, para que foss
 Para garantir uma estabilidade de excução foi construido uma configuração, docker que cuidar de processar as dependencias de execução em ambiente isolado, para melhor orquestraçao de ambos os serviços front e back, foi usado o docker-compose.
 Com isso não temos mas aquele velho ditado de DEV "na minha maquina funciona...".
 
+### link da aparesentação
+
+https://www.loom.com/share/ee6a5297f2db41828553793226a7584a
+
 > This is a challenge by Coodesh
