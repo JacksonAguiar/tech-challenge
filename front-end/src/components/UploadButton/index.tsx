@@ -5,10 +5,12 @@ import "./styles.css";
 
 interface Props {
   onSubmit: Function;
+  onFileNotSelected: VoidFunction;
 }
 
 const UploadButtonComponent: React.FC<Props> = ({
   onSubmit,
+  onFileNotSelected,
   ...props
 }: Props) => {
   const [fileData, setFileData] = useState<String | ArrayBuffer | null>(null);
@@ -34,13 +36,16 @@ const UploadButtonComponent: React.FC<Props> = ({
     if (fileData) {
       onSubmit(fileData.toString());
     }
+    else{
+      onFileNotSelected();
+    }
   };
 
   return (
     <div className="upload-content">
       <label htmlFor="input" className={fileData ? "has-file" : ""}>
         <FiUpload />
-        <input type="file" id="input" onChange={handleFileInputChange} />
+        <input type="file" accept=".txt" id="input" onChange={handleFileInputChange} />
         <span>{fileData ? fileName : "Selecionar"}</span>
       </label>
 

@@ -87,7 +87,16 @@ function App() {
         <div className="form-upload">
           <h2>Adicionar relatorio a lista</h2>
           <br />
-          <UploadButton onSubmit={handleSubmitItems} />
+          <UploadButton onSubmit={handleSubmitItems} onFileNotSelected={()=> toast.info("Selecione um arquivo para submissão.", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        })}/>
         </div>
         <br />
         <div className="list">
