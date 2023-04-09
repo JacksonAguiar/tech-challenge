@@ -1,3 +1,4 @@
+import { Prisma, Sale } from "@prisma/client";
 import prisma from "../prisma";
 
 export default class Controller {
@@ -6,10 +7,13 @@ export default class Controller {
       const sales: any[] = req.body;
 
       const data = await prisma.sale.createMany({ data: sales });
-
       res.json(data);
-    } catch (error) {
-      res.json(error);
+    } catch (e) {
+      if (e instanceof Prisma.PrismaClientKnownRequestError) {
+        // The .code property can be accessed in a type-safe manner
+        res.json({"code":e.code,"message": "Dados submetidos inválidos, verifique o arquivo e tente novamente."});
+      }
+      res.json(e);
     }
   }
   async fetch(req, res) {
@@ -33,7 +37,7 @@ export default class Controller {
         sales,
       });
     } catch (error) {
-        res.json(error);
+      res.json(error);
     }
   }
 }

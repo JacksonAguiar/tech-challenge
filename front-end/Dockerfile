@@ -1,16 +1,16 @@
-FROM node
+FROM node:16 as base
 
-WORKDIR /app
+WORKDIR /usr
 
 ENV PATH /app/node_modules/.bin:$PATH
 
-COPY package.json ./
+COPY package*.json ./
 
-COPY package-lock.json ./
-
-RUN npm install
+COPY package-lock*.json ./
 
 COPY . ./
+
+RUN npm install
 
 EXPOSE 3000
 

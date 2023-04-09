@@ -1,6 +1,8 @@
 import React from "react";
-import { Sale } from "../../interfaces";
 import { format } from "date-fns";
+
+import { Sale } from "../../interfaces";
+
 import "./styles.css";
 interface Props {
   cols: String[];

@@ -1,24 +1,26 @@
 import { useState, useEffect } from "react";
-import UploadButton from "../components/UploadButton";
-import "./App.css";
-import API_ITEMS from "../API";
-import "react-toastify/dist/ReactToastify.css";
+import API_ITEMS from "../../API";
 
-import { parseStringFileToData } from "../utils/file-parsing";
 import { toast, ToastContainer } from "react-toastify";
+import { parseStringFileToData } from "../../utils/file-parsing";
 
-import TableComponent from "../components/Table";
-import PaginationComponent from "../components/Pagination";
+import "react-toastify/dist/ReactToastify.css";
+import "./styles.css";
+
+import TableComponent from "../../components/Table";
+import PaginationComponent from "../../components/Pagination";
+import UploadButton from "../../components/UploadButton";
 
 function App() {
   const [list, setList] = useState<any[]>([]);
   const [page, setPage] = useState<number>(1);
   const [totalPages, setTotalPages] = useState<number>(0);
 
-  const loadData = async () => {
-    await API_ITEMS.fetchAll()
+  const loadData = async (page = 1) => {
+  
+    await API_ITEMS.fetchAll(page)
       .then((response) => {
-        console.log(response);
+
         setList(response.data.sales);
         setPage(response.data.page);
         setTotalPages(response.data.totalPages);
@@ -71,7 +73,8 @@ function App() {
   };
 
   const handleSimplePagination = (n:number)=>{
-    setPage(n);
+    setList([]);
+    loadData(n);
   }
 
   useEffect(() => {

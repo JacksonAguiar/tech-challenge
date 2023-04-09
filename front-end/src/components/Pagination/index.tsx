@@ -1,4 +1,5 @@
 import React from "react";
+
 import "./styles.css";
 
 interface Props {
@@ -13,10 +14,11 @@ const PaginationComponent: React.FC<Props> = ({
   current,
   ...props
 }: Props) => {
+
   return (
     <div className="content-pagination">
       {Array.from(Array(total).keys()).map((n) => (
-        <div key={`id-${n}`} className={`item-pagination ${n+1===current? "active": "inactive"}`} onClick={() => onChange(n)}>
+        <div key={`id-${n}`} className={`item-pagination ${n+1===Number(current)? "active": "inactive"}`} onClick={() => onChange(n)}>
           {n + 1}
         </div>
       ))}

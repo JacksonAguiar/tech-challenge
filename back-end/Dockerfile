@@ -1,4 +1,4 @@
-FROM node:16
+FROM node:16 as base
 
 ENV DATABASE_URL="postgres://uuedqizy:KFyPPKekDOlErlHBtpRK_X4YpNmIVHLW@babar.db.elephantsql.com/uuedqizy?schema=public"
 
