@@ -4,7 +4,7 @@ import UploadButton from ".";
 
 describe("UploadButton", () => {
   it("render component", () => {
-    render(<UploadButton  onSubmit={() => {}} />);
+    render(<UploadButton  onSubmit={() => {}} onFileNotSelected={()=>{}} />);
 
     expect(screen.getByText("Enviar")).toBeInTheDocument();
     expect(screen.getByText("Selecionar")).toBeInTheDocument();
@@ -12,7 +12,7 @@ describe("UploadButton", () => {
 
   it("should add file to input corretly", () => {
     const mockCallback = jest.fn();
-    render(<UploadButton  onSubmit={mockCallback} />);
+    render(<UploadButton  onSubmit={mockCallback} onFileNotSelected={()=>{}}/>);
 
     const file = new File(["content"], "arquivo.txt", { type: "text/plain" });
 
@@ -26,7 +26,7 @@ describe("UploadButton", () => {
   it("shoudn`t call callback function if no one file is selected", () => {
     const mockOnFileUpload = jest.fn();
     render(
-      <UploadButton onSubmit={mockOnFileUpload} />
+      <UploadButton onSubmit={mockOnFileUpload}onFileNotSelected={()=>{}} />
     );
 
     fireEvent.click(screen.getByText("Enviar"));
